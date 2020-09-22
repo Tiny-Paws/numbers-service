@@ -45,5 +45,5 @@ type subRequest struct {
 
 type subResponse struct {
 	R   int    `json:"r"`
-	Err string `json:"err,omitempty`
+	Err string `json:"err,omitempty"`
 }
