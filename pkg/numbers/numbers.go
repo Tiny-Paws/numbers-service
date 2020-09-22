@@ -9,12 +9,12 @@ type NumbersService interface {
 
 type numbersService struct{}
 
-func Add(a, b int) (int, error) {
+func (numbersService) Add(a, b int) (int, error) {
 	// Must add checks to prevent int overflow
 	return a + b, nil
 }
 
-func Sub(a, b int) (int, error) {
+func (numbersService) Sub(a, b int) (int, error) {
 	// Must add checks to prevent int underflow
 	return a - b, nil
 }
