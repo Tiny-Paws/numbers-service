@@ -9,6 +9,10 @@ type NumbersService interface {
 
 type numbersService struct{}
 
+func NewNumbersService() NumbersService {
+	return &numbersService{}
+}
+
 func (numbersService) Add(a, b int) (int, error) {
 	// Must add checks to prevent int overflow
 	return a + b, nil
