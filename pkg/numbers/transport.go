@@ -2,11 +2,13 @@ package numbers
 
 import (
 	"context"
+	"encoding/json"
+	"net/http"
 
 	"github.com/go-kit/kit/endpoint"
 )
 
-func makeAddEndpoint(svc NumbersService) endpoint.Endpoint {
+func MakeAddEndpoint(svc NumbersService) endpoint.Endpoint {
 	return func(_ context.Context, request interface{}) (interface{}, error) {
 		req := request.(addRequest)
 		r, err := svc.Add(req.A, req.B)
@@ -17,7 +19,7 @@ func makeAddEndpoint(svc NumbersService) endpoint.Endpoint {
 	}
 }
 
-func makeSubEndpoint(svc NumbersService) endpoint.Endpoint {
+func MakeSubEndpoint(svc NumbersService) endpoint.Endpoint {
 	return func(_ context.Context, request interface{}) (interface{}, error) {
 		req := request.(subRequest)
 		r, err := svc.Sub(req.A, req.B)
@@ -26,6 +28,26 @@ func makeSubEndpoint(svc NumbersService) endpoint.Endpoint {
 		}
 		return subResponse{r, ""}, nil
 	}
+}
+
+func DecodeAddRequest(_ context.Context, r *http.Request) (interface{}, error) {
+	var request addRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		return nil, err
+	}
+	return request, nil
+}
+
+func DecodeSubRequest(_ context.Context, r *http.Request) (interface{}, error) {
+	var request subRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		return nil, err
+	}
+	return request, nil
+}
+
+func EncodeResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
+	return json.NewEncoder(w).Encode(response)
 }
 
 type addRequest struct {
