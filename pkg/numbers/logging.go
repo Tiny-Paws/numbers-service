@@ -6,14 +6,14 @@ import (
 	"github.com/go-kit/kit/log"
 )
 
-type loggingMiddleware struct {
-	logger log.Logger
-	next   NumbersService
+type LoggingMiddleware struct {
+	Logger log.Logger
+	Next   NumbersService
 }
 
-func (mw loggingMiddleware) Add(a, b int) (output int, err error) {
+func (mw LoggingMiddleware) Add(a, b int) (output int, err error) {
 	defer func(begin time.Time) {
-		mw.logger.Log(
+		mw.Logger.Log(
 			"method", "Add",
 			"input", a, b,
 			"output", output,
@@ -22,13 +22,13 @@ func (mw loggingMiddleware) Add(a, b int) (output int, err error) {
 		)
 	}(time.Now())
 
-	output, err = mw.next.Add(a, b)
+	output, err = mw.Next.Add(a, b)
 	return
 }
 
-func (mw loggingMiddleware) Sub(a, b int) (output int, err error) {
+func (mw LoggingMiddleware) Sub(a, b int) (output int, err error) {
 	defer func(begin time.Time) {
-		mw.logger.Log(
+		mw.Logger.Log(
 			"method", "Sub",
 			"input", a, b,
 			"output", output,
@@ -37,6 +37,6 @@ func (mw loggingMiddleware) Sub(a, b int) (output int, err error) {
 		)
 	}(time.Now())
 
-	output, err = mw.next.Sub(a, b)
+	output, err = mw.Next.Sub(a, b)
 	return
 }
