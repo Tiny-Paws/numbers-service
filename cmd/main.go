@@ -7,10 +7,6 @@ import (
 	httptransport "github.com/go-kit/kit/transport/http"
 )
 
-func init() {
-
-}
-
 func main() {
 	svc := numbers.NewNumbersService()
 
