@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	logger := log.NewLogfmtLogger(os.Stderr)
+	logger := log.NewLogfmtLogger(os.Stdout)
 	svc := numbers.NewNumbersService()
 	svc = numbers.LoggingMiddleware{logger, svc}
 
