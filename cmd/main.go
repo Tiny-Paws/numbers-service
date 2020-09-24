@@ -11,9 +11,11 @@ import (
 )
 
 func main() {
-	logger := log.NewLogfmtLogger(os.Stdout)
+	lm := log.NewLogfmtLogger(os.Stdout)
+	im := numbers.NewInstrumentingMiddleware()
 	svc := numbers.NewNumbersService()
-	svc = numbers.LoggingMiddleware{logger, svc}
+	svc = numbers.LoggingMiddleware{lm, svc}
+	svc = im(svc)
 
 	addHandler := httptransport.NewServer(
 		numbers.MakeAddEndpoint(svc),
