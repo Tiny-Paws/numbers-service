@@ -2,13 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
         
         <link rel="stylesheet" href="style.css" />
         <title>Nice</title>
     </head>
     <body>
-        Add : <input type="number" id="a_add" /> + <input type="number" id="b_add" /> = <span id="answer_add">{{ answer }}</span><br />
+        <div id="add">
+            Add : <input type="number" v-model="a_add" /> + <input type="number" v-model="b_add" /> = {{ a_add }} {{ b_add }} {{ total }}<br />
+        </div>
         Sub : <input type="number" id="a_sub" /> - <input type="number" id="b_sub" /> = <span id="answer_sub"></span>
     </body>
     <script type="text/javascript" src="js.js"></script>
