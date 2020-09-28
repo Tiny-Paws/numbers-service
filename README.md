@@ -8,3 +8,6 @@ Things to implement
  - Instrumenting
  - Logging
  - Tracing
+ - Circuit Breaking
+ - Rate Limiting
+ - Distributed cache (memcached ? redis ?)
