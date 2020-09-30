@@ -10,4 +10,5 @@ Things to implement
  - Tracing
  - Circuit Breaking
  - Rate Limiting
+ - Authentication
  - Distributed cache (memcached ? redis ?)
