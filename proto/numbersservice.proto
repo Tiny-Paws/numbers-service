@@ -1,0 +1,27 @@
+syntax = "proto3";
+package  nspb;
+
+service Numbers {
+    rpc Add(int a, int b) returns (int, string) {}
+    rpc Sub(int a, int b) returns (int, string) {}
+}
+
+message AddRequest {
+    int a = 1;
+    int b = 2;
+}
+
+message AddResponse {
+    int r;
+    string err;
+}
+
+message SubRequest {
+    int a = 1;
+    int b = 2;
+}
+
+message SubResponse {
+    int r;
+    string err;
+}
