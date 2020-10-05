@@ -4,6 +4,8 @@ WORKDIR /go/src/app
 COPY . .
 
 RUN go get -d -v ./...
+WORKDIR /go/src/app/cmd
+RUN GOBIN=/bin go install
 
 EXPOSE 8080
-CMD ["go run cmd/main.go"]
+CMD ["cmd"]
