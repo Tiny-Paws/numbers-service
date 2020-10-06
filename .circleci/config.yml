@@ -19,8 +19,9 @@ jobs:
     ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
     steps:
-    #   - checkout
+      - checkout
+      - run: go get github.com/Tiny-Paws/numbersservice
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
-      - run: go test -v test/numbersservice
+      - run: go test -v ./...
