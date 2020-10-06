@@ -20,7 +20,8 @@ jobs:
     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
     steps:
       - checkout
-      - run: go get github.com/Tiny-Paws/numbers-service
+      - run: git clone https://github.com/Tiny-Paws/numbers-service.git
+      - run: cd numbers-service
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
