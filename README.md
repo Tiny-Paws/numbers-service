@@ -21,3 +21,9 @@ docker build . -t numbers-service
 docker run --rm -it -p 8080:8080 numbers-service
 ```
 Support for environment variables planned
+
+## Testing
+```bash
+cd test
+go test ./numbersservice
+```
