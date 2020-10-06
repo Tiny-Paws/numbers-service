@@ -39,7 +39,7 @@ func NewInstrumentingMiddleware() func(NumbersService) NumbersService {
 }
 
 func (i InstrumentingMiddleware) Add(a, b int) (output int, err error) {
-	output, err = i.next.Sub(a, b)
+	output, err = i.next.Add(a, b)
 	return
 }
 
