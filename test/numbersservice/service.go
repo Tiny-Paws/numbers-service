@@ -6,6 +6,7 @@ import (
 	"github.com/Tiny-Paws/numbers-service/pkg/numbers"
 )
 
+// TestNumbersService test wether or not the core business logic is working properly
 func TestNumbersService(t *testing.T) {
 	svc := numbers.NewNumbersService()
 	expected := 10
