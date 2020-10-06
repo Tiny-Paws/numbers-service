@@ -34,16 +34,19 @@ func NewInstrumentingMiddleware() func(NumbersService) NumbersService {
 		return InstrumentingMiddleware{
 			addCounter: addcnt,
 			subCounter: subcnt,
+			next:       ns,
 		}
 	}
 }
 
 func (i InstrumentingMiddleware) Add(a, b int) (output int, err error) {
-	output, err = i.next.Sub(a, b)
+	defer i.addCounter.Inc()
+	output, err = i.next.Add(a, b)
 	return
 }
 
 func (i InstrumentingMiddleware) Sub(a, b int) (output int, err error) {
+	defer i.subCounter.Inc()
 	output, err = i.next.Sub(a, b)
 	return
 }
